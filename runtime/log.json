@@ -1,0 +1,51 @@
+{
+  "get": [],
+  "post": {
+    "leads": {
+      "add": [
+        {
+          "id": "724141",
+          "name": "",
+          "status_id": "35407054",
+          "price": "0",
+          "responsible_user_id": "6385849",
+          "last_modified": "1602559660",
+          "modified_user_id": "6385849",
+          "created_user_id": "6385849",
+          "date_create": "1602559660",
+          "pipeline_id": "3619282",
+          "account_id": "29073040",
+          "custom_fields": [
+            {
+              "id": "86677",
+              "name": "Test field 1",
+              "values": [
+                {
+                  "value": "234"
+                }
+              ]
+            },
+            {
+              "id": "86679",
+              "name": "Test field 2",
+              "values": [
+                {
+                  "value": "444"
+                }
+              ]
+            }
+          ],
+          "created_at": "1602559660",
+          "updated_at": "1602559660"
+        }
+      ]
+    },
+    "account": {
+      "subdomain": "ivanovv1972",
+      "id": "29073040",
+      "_links": {
+        "self": "https:\/\/ivanovv1972.amocrm.ru"
+      }
+    }
+  }
+}

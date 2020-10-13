@@ -1,0 +1,16 @@
+{
+    "name": "kivicms/amo",
+    "description": "Test app",
+    "type": "project",
+    "authors": [
+        {
+            "name": "kivicms",
+            "email": "mednogorsk2006@yandex.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4.0",
+        "amocrm/amocrm-api-library": "dev-master"
+    }
+}
