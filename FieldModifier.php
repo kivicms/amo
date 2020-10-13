@@ -2,16 +2,17 @@
 
 use AmoCRM\Client\AmoCRMApiClient;
 use AmoCRM\EntitiesServices\Leads;
+use AmoCRM\Models\CustomFieldsValues\NumericCustomFieldValuesModel;
 use AmoCRM\Models\CustomFieldsValues\ValueCollections\NumericCustomFieldValueCollection;
 use AmoCRM\Models\CustomFieldsValues\ValueModels\NumericCustomFieldValueModel;
 
 class FieldModifier
 {
     protected const FIELD_ONE_ID = 86677;
-    protected const FIELD_ONE_TWO = 86679;
+    protected const FIELD_TWO_ID = 86679;
     protected AmoCRMApiClient $apiClient;
     protected Leads $leadService;
-    protected $leadIds;
+    protected $leadIds = [];
 
     public function __construct(AmoCRMApiClient $apiClient)
     {
@@ -28,14 +29,17 @@ class FieldModifier
             $lead = $this->leadService->getOne($id);
             $fieldValuesCollection = $lead->getCustomFieldsValues();
             $firstField = $fieldValuesCollection->getBy('fieldId', self::FIELD_ONE_ID);
-            $twoField = $fieldValuesCollection->getBy('fieldId', self::FIELD_ONE_TWO);
+
+            $twoField = new NumericCustomFieldValuesModel();
+            $twoField->setFieldId(self::FIELD_TWO_ID);
 
             $firstValue = $firstField->getValues();
+
             $twoField->setValues(
                 (new NumericCustomFieldValueCollection())
                     ->add(
                         (new NumericCustomFieldValueModel())->setValue(
-                            $firstValue[0] * 2
+                            $firstValue->first()->value * 2
                         )
                     )
             );
