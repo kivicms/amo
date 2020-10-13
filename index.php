@@ -1,13 +1,20 @@
 <?php
 
+use League\OAuth2\Client\Token\AccessTokenInterface;
+
 include_once __DIR__ . '/bootstrap.php';
+include_once 'SimpleLogger.php';
+include_once 'FieldModifier.php';
+
+$logger = new SimpleLogger();
+$logger->saveQuery();
 
 $accessToken = getToken();
 
 $apiClient->setAccessToken($accessToken)
     ->setAccountBaseDomain($accessToken->getValues()['baseDomain'])
     ->onAccessTokenRefresh(
-        function (\League\OAuth2\Client\Token\AccessTokenInterface $accessToken, string $baseDomain) {
+        function (AccessTokenInterface $accessToken, string $baseDomain) {
             saveToken(
                 [
                     'accessToken' => $accessToken->getToken(),
@@ -19,7 +26,5 @@ $apiClient->setAccessToken($accessToken)
         }
     );
 
-
-$leadsService = $apiClient->leads();
-
-$loggers = new SimpleLogger();
+$fieldModifier = new FieldModifier($apiClient);
+$fieldModifier->execute();
